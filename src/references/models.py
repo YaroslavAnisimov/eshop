@@ -13,7 +13,45 @@ class Author(models.Model) :
     Author_description = models.TextField(
         verbose_name="Book description",
         null=True,
-        blank=True
-    )
+        blank=True)
+    
+    created = models.DateTimeField(
+        verbose_name='Created date time',
+        auto_now=False,
+        auto_now_add=True)
+
+    updated = models.DateTimeField(
+        verbose_name='Updated date time',
+        auto_now=True)
+
  
+    def __str__(self):
+        return self.Author_name
+
+class Value(models.Model):
+    author = models.ForeignKey(
+        'references.Author',
+        verbose_name = 'Author',
+        on_delete = models.PROTECT,
+        related_name = 'Values')
+    
+
+    Genre = models.CharField(
+        verbose_name="Genre name",
+        max_length=50)
+    Reviews = models.TextField(
+        verbose_name="Reviews",
+        null=True,
+        blank=True,
+        max_length=200)
+    Rating = models.PositiveIntegerField(
+        verbose_name="Rating value",
+        null=True,
+        blank=True)
+    
+    def __str__(self):
+        return f'{self.author} {self.Genre} {self.Reviews} {self.Rating}'
+    
+
+
 
