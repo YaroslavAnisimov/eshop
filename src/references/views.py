@@ -6,8 +6,8 @@ from django.http import HttpResponse
 from references.models import Author
 
 def home_page (request):
-    authors = Author.objects.last()
-    context= {"books": books}
+    authors = Author.objects.all()
+    context= {"authors": authors}
     return render(request, template_name="home.html", context= context)
 
 
