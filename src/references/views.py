@@ -9,35 +9,35 @@ from . import forms
 
 from references.models import Author
 
-def authors_list (request):
-    authors = Author.objects.all()
-    context= {"authors": authors}
-    return render(request, template_name="home.html", context= context)
+#def authors_list (request):
+#    authors = Author.objects.all()
+#    context= {"authors": authors}
+#    return render(request, template_name="home.html", context= context)
 
 class AuthorsList (ListView) :
     model = Author
 
 
 
-def author_detail (request, pk):
-    author = Author.objects.get (pk = pk)
-    context= {"object": author}
-    return render(request, template_name="detail.html", context= context)
+#def author_detail (request, pk):
+#    author = Author.objects.get (pk = pk)
+#    context= {"object": author}
+#    return render(request, template_name="detail.html", context= context)
 
 class AuthorDetail (DetailView):
     queryset = Author.objects.all()
 
 
 
-def author_delete (request, pk):
-    author = Author.objects.get (pk = pk)
-    Value = author.Value.all()
-    value_count = Value.count()
-    message = f'Author {author.Author_name} with {value_count} values has just been deleted !'
-    Value.delete()
-    author.delete () 
-    context= {"message": message}
-    return render(request, template_name="delete.html", context= context)
+#def author_delete (request, pk):
+#    author = Author.objects.get (pk = pk)
+#    Value = author.Value.all()
+#    value_count = Value.count()
+#    message = f'Author {author.Author_name} with {value_count} values has just been deleted !'
+#    Value.delete()
+#    author.delete () 
+#    context= {"message": message}
+#    return render(request, template_name="delete.html", context= context)
 
 class AuthorDelete(DeleteView):
     success_url = reverse_lazy ('authors-list-cbv/')
@@ -75,7 +75,7 @@ def author_update (request):
     elif request.method == 'POST':
         Author_name = request.POST.get ('name')
         Author_description = request.POST.get ('Author_description')
-        author = Author.objects.get (pk =pk) 
+        author = Author.objects.get (pk = pk) 
         author.name = Author_name 
         author.description = Author_description
         author.save()
