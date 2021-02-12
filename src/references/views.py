@@ -9,39 +9,39 @@ from . import forms
 
 from references.models import Author
 
-#def authors_list (request):
-#    authors = Author.objects.all()
-#    context= {"authors": authors}
-#    return render(request, template_name="home.html", context= context)
+def authors_list (request):
+    authors = Author.objects.all()
+    context= {"authors": authors}
+    return render(request, template_name="home.html", context= context)
 
-class AuthorsList (ListView) :
-    model = Author
-
-
-
-#def author_detail (request, pk):
-#    author = Author.objects.get (pk = pk)
-#    context= {"object": author}
-#    return render(request, template_name="detail.html", context= context)
-
-class AuthorDetail (DetailView):
-    queryset = Author.objects.all()
+#class AuthorsList (ListView) :
+#    model = Author
 
 
 
-#def author_delete (request, pk):
-#    author = Author.objects.get (pk = pk)
-#    Value = author.Value.all()
-#    value_count = Value.count()
-#    message = f'Author {author.name} with {value_count} values has just been deleted !'
-#    Value.delete()
-#    author.delete () 
-#    context= {"message": message}
-#    return render(request, template_name="delete.html", context= context)
+def author_detail (request, pk):
+    author = Author.objects.get (pk = pk)
+    context= {"object": author}
+    return render(request, template_name="detail.html", context= context)
 
-class AuthorDelete(DeleteView):
-    success_url = reverse_lazy ('authors-list-cbv/')
-    model=Author 
+#class AuthorDetail (DetailView):
+#    queryset = Author.objects.all()
+
+
+
+def author_delete (request, pk):
+    author = Author.objects.get (pk = pk)
+    Value = author.Value.all()
+    value_count = Value.count()
+    message = f'Author {author.name} with {value_count} values has just been deleted !'
+    Value.delete()
+    author.delete () 
+    context= {"message": message}
+    return render(request, template_name="delete.html", context= context)
+
+#class AuthorDelete(DeleteView):
+#    success_url = reverse_lazy ('authors-list-cbv/')
+#    model=Author 
 
 
 
@@ -54,17 +54,16 @@ def author_create (request):
             return HttpResponseRedirect (reverse ('author-detail', kwargs = {'pk': author.pk }))
         else:
             context['form'] = form
-
     else:
         context['form'] = forms.AuthorForm()
 
     return render(request, template_name="create.html", context= context)
 
-class AuthorCreate (CreateView):
-    model = Author
-    success_url = reverse_lazy ('authors-list-cbv/')
-    #form_class = forms.AuthorForm
-    fields = ('name' , 'description')
+#class AuthorCreate (CreateView):
+#    model = Author
+#    success_url = reverse_lazy ('authors-list-cbv/')
+#    #form_class = forms.AuthorForm
+#    fields = ('name' , 'description')
  
 
 def author_update (request):
@@ -81,5 +80,6 @@ def author_update (request):
         author.save()
         return HttpResponseRedirect (reverse ('author-detail', kwargs = {'pk': author.pk }))
     return render(request, template_name="update.html", context= context)
+
 
 
