@@ -4,13 +4,13 @@ from django.db import models
 
 class Author(models.Model) :
     #ID
-    Author_name = models.CharField(
+    name = models.CharField(
         verbose_name="Name",
-        max_length=50,
+        max_length=50, 
         null=False,
-        blank=False
-        ) 
-    Author_description = models.TextField(
+        blank=False) 
+
+    description = models.TextField(
         verbose_name="Book description",
         null=True,
         blank=True)
@@ -26,24 +26,26 @@ class Author(models.Model) :
 
  
     def __str__(self):
-        return self.Author_name
+        return self.name
 
-class Value(models.Model):
+class Opinion(models.Model):
+    
     author = models.ForeignKey(
         'references.Author',
         verbose_name = 'Author',
         on_delete = models.PROTECT,
-        related_name = 'Values')
-    
+        related_name = 'Opinions')
 
     Genre = models.CharField(
         verbose_name="Genre name",
         max_length=50)
+    
     Reviews = models.TextField(
         verbose_name="Reviews",
         null=True,
         blank=True,
         max_length=200)
+
     Rating = models.PositiveIntegerField(
         verbose_name="Rating value",
         null=True,

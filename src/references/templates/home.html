@@ -21,9 +21,9 @@
         {% for author in authors %}
             <tr>
                 <td> {{ author.pk }} </td>
-                <td> <a href= "{% url 'author-detail' author.pk %}"> {{ author.Author_name }} </a></td>
-                <td> {{ author.Author_description }} </td>
-                <td> {{ author.Value.all | length }} </td>
+                <td> <a href= "{% url 'author-detail' author.pk %}"> {{ author.name }} </a></td>
+                <td> {{ author.description }} </td>
+                <td> {{ author.Opinion.all | length }} </td>
                 <td> {{ author.created }} </td>
                 <td> {{ author.updated }} </td>
                 <td> 

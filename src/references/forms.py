@@ -10,7 +10,7 @@ class AuthorForm (forms.ModelForm):
     #name = forms.CharField(
     #    max_length=50,
     #    required=True,
-    #   label="Author's name",
+    #    label="Author's name",
     #    help_text="Input some name"
     #)
     

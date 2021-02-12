@@ -12,7 +12,7 @@
     {{ object.description | default : "There is no description" }} </br>
     <h2></h2>
     <ul>
-        {% for values in object.Value.all %}
+        {% for values in object.Opinion.all %}
             <li> {{ values }} </li>
         {% end/for %}
     </ul>

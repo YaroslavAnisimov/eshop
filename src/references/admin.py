@@ -7,14 +7,14 @@ from . import models
 class AuthorAdmin(admin.ModelAdmin):
     list_display = [
         'pk',
-        'Author_name',
-        'Author_description',
+        'name',
+        'description',
         'created',
         'updated'
     ]
 
-class ValueAdmin(admin.ModelAdmin):
-    search_fields = ['author__Author_name']
+class OpinionAdmin(admin.ModelAdmin):
+    search_fields = ['author__name']
     list_display = [
         'pk',
         'author',
@@ -22,9 +22,10 @@ class ValueAdmin(admin.ModelAdmin):
         'Reviews',
         'Rating'
     ]
-
-
-admin.site.register(models.Value, ValueAdmin)
+ 
 
 admin.site.register(models.Author, AuthorAdmin)
+
+admin.site.register(models.Opinion, OpinionAdmin)
+
 
