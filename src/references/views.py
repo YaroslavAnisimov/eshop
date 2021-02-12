@@ -33,7 +33,7 @@ class AuthorDetail (DetailView):
 #    author = Author.objects.get (pk = pk)
 #    Value = author.Value.all()
 #    value_count = Value.count()
-#    message = f'Author {author.Author_name} with {value_count} values has just been deleted !'
+#    message = f'Author {author.name} with {value_count} values has just been deleted !'
 #    Value.delete()
 #    author.delete () 
 #    context= {"message": message}
@@ -73,11 +73,11 @@ def author_update (request):
         author = Author.objects.get (pk =pk)
         
     elif request.method == 'POST':
-        Author_name = request.POST.get ('name')
-        Author_description = request.POST.get ('Author_description')
+        name = request.POST.get ('name')
+        description = request.POST.get ('description')
         author = Author.objects.get (pk = pk) 
-        author.name = Author_name 
-        author.description = Author_description
+        author.name = name 
+        author.description = description
         author.save()
         return HttpResponseRedirect (reverse ('author-detail', kwargs = {'pk': author.pk }))
     return render(request, template_name="update.html", context= context)
