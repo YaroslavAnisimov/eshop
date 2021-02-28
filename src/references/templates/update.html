@@ -7,13 +7,10 @@
 </head>
 <body>
     <h1> Add Author </h1>
-    {{ form_data }}
-    <form action = '' mrthod='POST'>
+    <form action = '' method='POST'>
         {% csrf_token %}
         {{ form.as_table }}
-        
         <button> Add </button>
     </form>
-
 </body>
 </html>

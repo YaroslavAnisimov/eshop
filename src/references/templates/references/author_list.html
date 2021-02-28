@@ -1,13 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1> cbv {{ pk }} </h1>
-    <table border= '1'>
+{% extends "base.html" %}
+
+{% block title %} 
+{{ page_title }}
+{% endblock title %}
+
+
+{% block main_content %}  
+
+    <div class="alert alert-dark" role="alert">
+        Book Store
+</div> 
+
+    <h1> Book e-Store </h1>
+    <table class="table">
         <tr>
             <td>#</td>>
             <td>Author name</td>
@@ -21,18 +26,22 @@
         {% for author in object_list %}
             <tr>
                 <td> {{ author.pk }} </td>
-                <td> <a href= "{% url 'author-detail' author.pk %}"> {{ author.name }} </a></td>
+                <td> <a href= "{% url 'author-detail-cbv' author.pk %}"> {{ author.name }} </a></td>
                 <td> {{ author.description }} </td>
                 <td> {{ author.Opinion.all | length }} </td>
                 <td> {{ author.created }} </td>
                 <td> {{ author.updated }} </td>
                 <td> 
-                    <a href= "{% url 'author-delete-cbv' author.pk %}"> Delete </a>
-                    <a href= "{% url 'author-update' author.pk %}"> Update </a>  
+                    <a href= "{% url 'author-delete-cbv' author.pk %}"> <i class="far fa-trash-alt"></i> </a>
+                    <a href= "{% url 'author-update' author.pk %}"> <i class="far fa-edit"></i> </a>  
                 </td>
             </tr>
         {% endfor %}   
     </table>
-    <a href '{% url 'author-create-cbv' %}'> Add author </a>
-</body>
-</html>
+    <a href '{% url 'author-create-cbv' %}' class = "btn btn-success "> Add author </a>
+  </div>
+
+{% endblock main_content %}
+
+
+

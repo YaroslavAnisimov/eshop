@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %} 
+{{ page_title }}
+{% endblock title %}
+
+{% block main_content %}  
     <h1> (CBV) Author name {{ object.name }} </h1>
     <a href= "{% url 'authors-list'  %}" > Authors list </a> </br>
 
@@ -19,5 +18,5 @@
 
     {{ object.created }} </br>
     {{ object.updated }} </br>
-</body>
-</html>  
+
+{% endblock main_content %}

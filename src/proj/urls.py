@@ -15,23 +15,32 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from references.views import AuthorsList
 from references import views
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls), #http://127.0.0.1:8000/admin/
-path('authors/',views.authors_list),
-    path('authors/', views.authors_list, name='authors-list'),
-    #path('authors-cbv/', views.AuthorsList.as_view (), name='author-list-cbv'),
-    path('authors/<int:pk>/', views.author_detail, name='author-detail'),
-    #path('authors-cbv/<int:pk>/', views.AuthorDetail.as_view (), name='author-detail-cbv'),
-    path('author-delete/<int:pk>/', views.author_delete, name='author-delete'),
-    #path('author-delete-cbv/<int:pk>/', views.AuthorDelete.as_view, name='author-delete-cbv'),
+    #path('authors/', views.authors_list, name='authors-list'), 
+    #path('authors/<int:pk>/', views.author_detail, name='author-detail'),
+    #path('author-delete/<int:pk>/', views.author_delete, name='author-delete'),
+    #path('author-create/', views.author_create, name='author-create'),
+    path('authors/', views.AuthorsList.as_view (), name='authors-list'),
+    path('authors-cbv/<int:pk>/', views.AuthorDetail.as_view (), name='author-detail-cbv'),
+    path('author-create-cbv/', views.AuthorCreate.as_view(), name='author-create-cbv')
+    path('author-delete-cbv/<int:pk>/', views.AuthorDelete.as_view, name='author-delete-cbv'),
     path('author-update/<int:pk>/', views.author_update, name='author-update'),
-    path('author-create/', views.author_create, name='author-create'),
-    #path('author-create-cbv/', views.AuthorCreate.as_view(), name='author-create-cbv')
-#path('authors/<int:pk>', views.author_details)
+    
+    #path('authors/<int:pk>', views.author_details)
+    
+    
 #1.URL http://127.0.0.1:8000/cities/3/ (pk)
 #2.GET http://127.0.0.1:8000/cities/?city_id=4...
 #3.POST k:v, k:v  
+    
+    
+    
+    
+    
 ]

@@ -1,11 +1,12 @@
 from django import forms
-from django.db.models import fields
 from . import models
+from django.db.models import fields
 
 class AuthorForm (forms.ModelForm):
     class Meta:
         model = models.Author 
-        fields = ('name', 'description' )
+        fields = ('__all__')
+    #    fields = ('name', 'description' )
     
     #name = forms.CharField(
     #    max_length=50,
