@@ -9,6 +9,10 @@ class Author(models.Model) :
         max_length=50, 
         null=False,
         blank=False) 
+    pic = models.ImageField(
+        verbose_name="Picture",
+        upload_to = "uploads/"
+    )
 
     description = models.TextField(
         verbose_name="Book description",
@@ -27,6 +31,12 @@ class Author(models.Model) :
  
     def __str__(self):
         return self.name
+
+class CityPic(models.Model):
+    name = ;;;f
+    pic = models.ImageField
+    city = models.ForeignKey(City)
+
 
 class Opinion(models.Model):
     
