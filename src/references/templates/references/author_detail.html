@@ -10,16 +10,18 @@
         <div class="card-body">
             <h5 class="card-title">{{object.name}}</h5>
             <p class="card-text">{{object.description}}
+
                 <ul>
                     {% for values in object.Opinion.all %}
                         <li> {{ values }} </li>
                     {% endfor %}
                 </ul>
+                
                 {{ object.created }} </br>
                 {{ object.updated }} </br>
             </p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <a href ='/authors/' class = "btn btn-danger btn-block" > Authors </a>
         </div>
-  </div>
-
+</div>
 {% endblock main_content %}
+ 

@@ -9,7 +9,7 @@
 
     <div class="alert alert-dark" role="alert"></div> 
 
-    <h1> Book e-Store </h1> {{user}}
+    <h1> Book e-Store </h1>
 
     <div class="pagination">
         <span class="step-links">
@@ -43,21 +43,20 @@
         {% for author in object_list %}
             <tr>
                 <td> {{ author.pk }} </td>
-                <td> <a href= "{% url 'author-detail-cbv' author.pk %}"> {{ author.name }} </a></td>
+                <td> <a href= "{% url 'author-detail' author.pk %}"> {{ author.name }} </a></td>
                 <td> {{ author.description }} </td>
                 <td> {{ author.Opinion.all|length }} </td>
                 <td> {{ author.created }} </td>
                 <td> {{ author.updated }} </td>
                 <td> 
-                    <a href= "{% url 'author-delete-cbv' author.pk %}"> <i class="far fa-trash-alt"></i> </a>
+                    <a href= "{% url 'author-delete' author.pk %}"> <i class="far fa-trash-alt"></i> </a>
                     <a href= "{% url 'author-update' author.pk %}"> <i class="far fa-edit"></i> </a>  
                 </td>
             </tr>
         {% endfor %}   
     </table>
-    <a href "{% url 'author-create-cbv' %}" class = "btn btn-success"> Add author </a></button>
-
-
+    <a href = "{% url 'author-create' %}" class = "btn btn-success"> Add author </a></button>
+     
 {% endblock main_content %}
 
 

@@ -13,16 +13,16 @@ from references.models import Author
 class AuthorsList (LoginRequiredMixin, ListView) :
    model = Author
    login_url = '/admin/login/'
-   paginate_by = 10 
+   # paginate_by = 10 
 
+   def gen_context_data (self, **kwargs):
+      context = super().get_context_data (**kwargs)
+      context ['page_title'] = "Authors"
+      return context
 #    def test_func (self):
         # first_name = self.request.user.first_name 
         # pk = self.request.user.pk
         # return f"{pk}" == "1"
-   def gen_context_data (self, **kwargs):
-       context = super().get_context_data (**kwargs)
-       context ['page_title'] = "Authors"
-       return context
 
 class AuthorDetail (DetailView):
     model = Author
