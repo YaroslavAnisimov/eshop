@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
 </head>
 <body>
-    <h1> {{ pk }} </h1>
-    <table border= '1'>
+    <h1>{{ pk }}</h1>
+    <table border = "1">
         <tr>
             <td>#</td>>
             <td>Author name</td>
@@ -17,13 +11,12 @@
             <td>updated</td>
             <td>actions</td>
         </tr>
-        <h1> Hello Dear Reader </h1>
         {% for author in authors %}
             <tr>
                 <td> {{ author.pk }} </td>
                 <td> <a href= "{% url 'author-detail-cbv' author.pk %}"> {{ author.name }} </a></td>
                 <td> {{ author.description }} </td>
-                <td> {{ author.Opinions.all | length }} </td>
+                <td> {{ author.Opinions.all|length }} </td>
                 <td> {{ author.created }} </td>
                 <td> {{ author.updated }} </td>
                 <td> 
@@ -33,6 +26,8 @@
             </tr>
         {% endfor %}   
     </table>
+</br>
+</br>
     <a href "{% url 'author-create' %}"> Add author </a>
 </body>
 </html>

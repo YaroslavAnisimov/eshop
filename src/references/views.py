@@ -1,15 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy 
-from django.views.generic import DetailView, ListView, DeleteView, CreateView
+# from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
+from django.views.generic import DetailView, ListView, DeleteView, CreateView, UpdateView
 
 from . import forms
 
 from references.models import Author
 
+# (UserPassesTestMixin, ListView) 
 
 class AuthorsList (ListView) :
    model = Author
+#    login_url = '/admin/login/'
+#    def test_func (self):
+        # first_name = self.request.user.first_name 
+        # pk = self.request.user.pk
+        # return f"{pk}" == "1"
    def gen_context_data (self, **kwargs):
        context = super ().get_context_data (**kwargs)
        context ['page_title'] = "Authors"
@@ -20,15 +27,39 @@ class AuthorDetail (DetailView):
 #    queryset = Author.objects.all()
 
 class AuthorDelete (DeleteView):
-   success_url = reverse_lazy ('authors-list-cbv')
-   model=Author 
+   success_url = reverse_lazy ('authors-list')
+   model = Author 
 
 
 class AuthorCreate (CreateView):
    model = Author
-   fields = ('name' , 'description')
-   #success_url = reverse_lazy ('authors-list') 
+#    fields = ('name', 'description')
+   success_url = reverse_lazy ('authors-list')
    form_class = forms.AuthorForm
+
+class AuthorUpdate (UpdateView):
+    model = Author
+    success_url ='/authors-list/'
+    fields = ('name', 'description')
+
+
+
+# def author_update (request):
+#     context= {}
+#     if request.metod == 'GET':
+#         author = Author.objects.get (pk =pk)
+#         context = {'name': author.name, 'description': author.description}
+#     elif request.method == 'POST':
+#         name = request.POST.get ('name')
+#         description = request.POST.get ('description')
+#         author = Author.objects.get (pk = pk)
+#         author.name = name 
+#         author.description = description
+#         author.save()
+#         return HttpResponseRedirect (reverse ('author-detail', kwargs = {'pk': author.pk }))
+#     return render(request, template_name="update.html", context= context)
+
+
 
 
 # def authors_list (request):
@@ -74,23 +105,6 @@ class AuthorCreate (CreateView):
 #        context['form'] = forms.AuthorForm()
 #     return render(request, template_name="create.html", context= context)
 
-
-
-
-def author_update (request):
-    context= {}
-    if request.metod == 'GET':
-        author = Author.objects.get (pk =pk)
-        context = {'name': author.name, 'description': author.description}
-    elif request.method == 'POST':
-        name = request.POST.get ('name')
-        description = request.POST.get ('description')
-        author = Author.objects.get (pk = pk)
-        author.name = name 
-        author.description = description
-        author.save()
-        return HttpResponseRedirect (reverse ('author-detail', kwargs = {'pk': author.pk }))
-    return render(request, template_name="update.html", context= context)
 
 
 

@@ -8,12 +8,13 @@
     <h1> (CBV) Author name {{ object.name }} </h1>
     <a href= "{% url 'authors-list'  %}" > Authors list </a> </br>
 
-    {{ object.description | default : "There is no description" }} </br>
+    {{object.description|default:"There is no description"}} </br>
     <h2></h2>
     <ul>
         {% for values in object.Opinion.all %}
             <li> {{ values }} </li>
-        {% end/for %}
+
+        {% endfor %}
     </ul>
 
     {{ object.created }} </br>
