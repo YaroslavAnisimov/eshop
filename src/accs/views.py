@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, views
 
 # Create your views here.
 
-class MyLoginView (views,LoginView):
+class MyLoginView (views, LoginView):
     template = "accs/login.html"
 
 

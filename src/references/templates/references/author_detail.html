@@ -5,19 +5,21 @@
 {% endblock title %}
 
 {% block main_content %}  
-    <h1> (CBV) Author name {{ object.name }} </h1>
-    <a href= "{% url 'authors-list'  %}" > Authors list </a> </br>
-
-    {{object.description|default:"There is no description"}} </br>
-    <h2></h2>
-    <ul>
-        {% for values in object.Opinion.all %}
-            <li> {{ values }} </li>
-
-        {% endfor %}
-    </ul>
-
-    {{ object.created }} </br>
-    {{ object.updated }} </br>
+<div class="card" style="width: 18rem;">
+    <img src="{{ object.pic.url}}" class="card-img-top" alt="{{object.description}}">
+        <div class="card-body">
+            <h5 class="card-title">{{object.name}}</h5>
+            <p class="card-text">{{object.description}}
+                <ul>
+                    {% for values in object.Opinion.all %}
+                        <li> {{ values }} </li>
+                    {% endfor %}
+                </ul>
+                {{ object.created }} </br>
+                {{ object.updated }} </br>
+            </p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+  </div>
 
 {% endblock main_content %}

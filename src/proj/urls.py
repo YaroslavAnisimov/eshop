@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from django.conf.urls.static import static
+from django.conf import settings
 #from references.views import AuthorsList
 
 from references import views as ref_views
@@ -37,7 +38,12 @@ urlpatterns = [
     # path('author-update/<int:pk>/', views.author_update, name='author-update'), 
     path('author-update/<int:pk>/', views.AuthorUpdate.as_view(),name="author-update"),
     path('accs/', include(accs_urls)) 
+    
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings .MEDIA_ROOT)  
+
 
     #path('authors/<int:pk>', views.author_details)
     

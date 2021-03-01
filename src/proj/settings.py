@@ -126,4 +126,6 @@ USE_TZ = True
 STATIC_ROOT = '/home/YaroslavAnisimov/eshop/static'
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 CRISPY_TEMPLATE_PACK = 'bootstrap4' 

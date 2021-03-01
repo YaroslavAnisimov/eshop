@@ -5,16 +5,16 @@ from . import models
 class AuthorForm (forms.ModelForm):
     class Meta:
         model = models.Author 
-        fields = ('__all__')
-    #    fields = ('name', 'description' )
+        # fields = ('__all__')
+        fields = ('name', 'pic', 'description' )
 
-    def clean(self):
-        cleaned_data = super().clean()
-        name = cleaned_data.get ('name')
+    # def clean(self):
+    #     cleaned_data = super().clean()
+    #     name = cleaned_data.get ('name')
 
-        if name == "Yaroslav":
-            self.add_error('name', 'This name is forbidden')
-        return cleaned_data
+    #     if name == "Yaroslav":
+    #         self.add_error('name', 'This name is forbidden')
+    #     return cleaned_data
     
     #name = forms.CharField(
     #    max_length=50,

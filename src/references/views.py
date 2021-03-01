@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy 
-# from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.views.generic import DetailView, ListView, DeleteView, CreateView, UpdateView
 
 from . import forms
@@ -10,15 +10,17 @@ from references.models import Author
 
 # (UserPassesTestMixin, ListView) 
 
-class AuthorsList (ListView) :
+class AuthorsList (LoginRequiredMixin, ListView) :
    model = Author
-#    login_url = '/admin/login/'
+   login_url = '/admin/login/'
+   paginate_by = 10 
+
 #    def test_func (self):
         # first_name = self.request.user.first_name 
         # pk = self.request.user.pk
         # return f"{pk}" == "1"
    def gen_context_data (self, **kwargs):
-       context = super ().get_context_data (**kwargs)
+       context = super().get_context_data (**kwargs)
        context ['page_title'] = "Authors"
        return context
 
