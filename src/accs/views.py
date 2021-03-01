@@ -3,11 +3,11 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from . import forms
 from django.contrib.auth import authenticate, login, views
+from django.contrib.auth.views import LoginView
 
-# Create your views here.
 
-class MyLoginView (views, LoginView):
-    template = "accs/login.html"
+class MyLoginView(LoginView):
+    template_name = "accs/login.html"
 
 
 
