@@ -25,9 +25,9 @@ from accs import urls as accs_urls
 
 urlpatterns = [
     path('qwerty/', admin.site.urls), #http://127.0.0.1:8000/admin/
-    path('', ref_views.AuthorsList.as_view(), name='author-list-homepage'),
+    # path('', ref_views.AuthorsList.as_view(), name='author-list-homepage'),
     # path('authors/', views.authors_list, name='authors-list'), 
-    path('authors/', ref_views.AuthorsList.as_view(), name='authors-list'),
+    path('authors/', ref_views.AuthorsList.as_view(), name='author-list'),
     # path('authors/<int:pk>/', views.author_detail, name='author-detail'),
     path('authors/<int:pk>/', ref_views.AuthorDetail.as_view(), name='author-detail'),
     # path('author-delete/<int:pk>/', views.author_delete, name='author-delete'),
