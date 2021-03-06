@@ -2,6 +2,7 @@
 
 {% block title %} 
 {{ page_title }}
+{% load crispy_forms_tags %}
 {% endblock title %}
 
 
@@ -9,8 +10,11 @@
 
     <div class="alert alert-dark" role="alert"></div> 
 
-    <h1> Book e-Store </h1>
-
+    <h1> BookEshop </h1>
+    {{ request.get_full_path }}
+    <form action="" method="get">
+        {{ search_form|crispy }}
+    </form> 
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_previous %}
@@ -28,12 +32,32 @@
             {% endif %}
         </span>
     </div>
-
+    {{ field_to_sort_on}} {{direction_to_sort_on}}
     <table class="table table-striped table-bordered">
         <tr>
-            <td>ID</td>
-            <td>Author name</td>
-            <td>Author description</td>
+            <td><a href="?field=pk&direction={% if field_to_sort_on == 'ID' and direction_to_sort_on == 'up' %}down{% else %}up{% endif %}"> ID 
+            {% if field_to_sort_on == 'pk' and direction_to_sort_on == 'up' %}
+                <i class="fas fa-angle-up"></i>
+            {% elif field_to_sort_on == 'pk' and direction_to_sort_on == 'down' %}
+                <i class="fas fa-angle-down"></i>
+            {% else %}
+            {% endif %}
+            </a></td>
+            <td><a href="?field=name&direction={% if field_to_sort_on == 'name' and direction_to_sort_on == 'up' %} down {% else %} up {% endif %}"> Author name 
+            {% if field_to_sort_on == 'name' and direction_to_sort_on == 'up' %}
+                <i class="fas fa-angle-up"></i>
+            {% elif field_to_sort_on == 'name' and direction_to_sort_on == 'down' %}
+                <i class="fas fa-angle-down"></i>
+            {% else %}
+            {% endif %}
+            </a></td>
+            <td><a href="?field=description&direction={% if field_to_sort_on == 'description' and direction_to_sort_on == 'up' %} down {% else %} up {% endif %}"> Description 
+            {% if field_to_sort_on == 'description' and direction_to_sort_on == 'up' %}
+                <i class="fas fa-angle-up"></i>
+            {% elif field_to_sort_on == 'description' and direction_to_sort_on == 'down' %}
+                <i class="fas fa-angle-down"></i>
+            {% else %}
+            {% endif %}
             <td>value</td>
             <td>created</td>
             <td>updated</td>

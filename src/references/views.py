@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy 
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.views.generic import DetailView, ListView, DeleteView, CreateView, UpdateView
-
+from django.db.models import Q
 from . import forms
 
 from references.models import Author
@@ -13,11 +13,43 @@ from references.models import Author
 class AuthorsList (LoginRequiredMixin, ListView) :
    model = Author
    login_url = '/admin/login/'
-   # paginate_by = 10 
+   paginate_by = 10 
 
-   def gen_context_data (self, **kwargs):
+   def get_ordering(self):
+      ordering_by = "pk"
+      field_to_sort_on = self.request.GET.get('field')
+      direction_to_sort_on = self.request.GET.get ('direction')
+      if field_to_sort_on and direction_to_sort_on:
+         direction = {'up': ""}
+         ordering_by = f'{direction.get(direction_to_sort_on,"-")}{field_to_sort_on}'
+      return ordering_by 
+      #    if direction_to_sort_on == 'up':
+      #       direction = ""
+      #    else:
+      #       direction = "-" 
+
+   def get_queryset(self):
+      guery = self.request.GET.get('query')
+      print(query)
+      qs = super().get_queryset()
+      if query:
+         qs = qs.filter(Q(description_contains=query)|Q(name_contains=query) )
+      return qs
+
+   def get_context_data (self, **kwargs):
       context = super().get_context_data (**kwargs)
       context ['page_title'] = "Authors"
+      field_to_sort_on = self.request.GET.get('field')
+      direction_to_sort_on = self.request.GET.get ('direction')
+      query = self.request.GET.get('query')
+      context ['search_form'] = forms.SearchForm(
+         initial={
+            'query':query,
+            'field':field_to_sort_on,
+            'direction': direction_to_sort_on,
+         })
+      context ['field_to_sort_on'] = field_to_sort_on
+      context ['direction_to_sort_on'] = direction_to_sort_on
       return context
 #    def test_func (self):
         # first_name = self.request.user.first_name 

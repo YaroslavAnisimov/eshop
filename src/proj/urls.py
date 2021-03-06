@@ -21,6 +21,8 @@ from django.conf import settings
 
 from references import views as ref_views
 from accs import urls as accs_urls
+from cart import urls as cart_urls
+from cart import views as cart_views
 
 
 urlpatterns = [
@@ -36,7 +38,9 @@ urlpatterns = [
     path('author-create/', ref_views.AuthorCreate.as_view(), name='author-create'),
     # path('author-update/<int:pk>/', views.author_update, name='author-update'), 
     path('author-update/<int:pk>/', ref_views.AuthorUpdate.as_view(),name="author-update"),
-    path('accs/', include(accs_urls)) 
+    path('accs/', include(accs_urls)), 
+    path('cart/', include(cart_urls, namespace="cart")),
+    path('cart/', cart_views.HomePage.as_view(), name = "home-page")
 ]
 
 if settings.DEBUG:

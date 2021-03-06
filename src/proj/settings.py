@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'references',
-    'accs'
+    'accs',
+    'cart',
+    'orders'
 ]
 
 MIDDLEWARE = [
@@ -129,3 +131,5 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 CRISPY_TEMPLATE_PACK = 'bootstrap4' 
+
+COMPANY_NAME = "BookEshop"

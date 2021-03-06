@@ -5,8 +5,16 @@ from . import models
 class AuthorForm (forms.ModelForm):
     class Meta:
         model = models.Author 
-        fields = ('__all__')
-        # fields = ('name', 'pic', 'description' )
+        # fields = ('__all__')
+        fields = ('name', 'pic', 'description' )
+
+class SearchForm(forms.Form):
+    query = forms.CharField(label="")
+    field=forms.CharField(widget=forms.HiddenInput)
+    direction=forms.CharField(widget=forms.HiddenInput)
+
+
+    
 
     # def clean(self):
     #     cleaned_data = super().clean()

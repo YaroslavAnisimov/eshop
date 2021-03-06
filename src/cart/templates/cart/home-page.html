@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} 
+{{ page_title }}
+{% load crispy_forms_tags %}
+{% endblock title %}
+
+
+{% block main_content %}  
+    <h1> Home Page </h1>
+    {% for author in authors %}
+    <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ author.name}}</h5>
+          <p class="card-text">1234 </p>
+          <a href= "{% url 'cart:add-to-cart' %}?author={{ author.pk }}" class="btn btn-primary"> Buy </a>
+        </div>
+      </div>
+        {{ author }} <br>
+    {% endfor %}
+{% endblock main_content %}
