@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block title %} 
 {{ page_title }}
 {% load crispy_forms_tags %}
@@ -7,7 +6,6 @@
 
 
 {% block main_content %}  
-
     <div class="alert alert-dark" role="alert"></div> 
 
     <h1> BookEshop </h1>
@@ -43,7 +41,7 @@
             {% else %}
             {% endif %}
             </a></td>
-            <td><a href="?field=name&direction={% if field_to_sort_on == 'name' and direction_to_sort_on == 'up' %} down {% else %} up {% endif %}"> Author name 
+            <td><a href="?field=name&direction={% if field_to_sort_on == 'book_name' and direction_to_sort_on == 'up' %} down {% else %} up {% endif %}"> Author name 
             {% if field_to_sort_on == 'name' and direction_to_sort_on == 'up' %}
                 <i class="fas fa-angle-up"></i>
             {% elif field_to_sort_on == 'name' and direction_to_sort_on == 'down' %}
@@ -51,36 +49,42 @@
             {% else %}
             {% endif %}
             </a></td>
-            <td><a href="?field=description&direction={% if field_to_sort_on == 'description' and direction_to_sort_on == 'up' %} down {% else %} up {% endif %}"> Description 
+            <td><a href="?field=description&direction={% if field_to_sort_on == 'book_description' and direction_to_sort_on == 'up' %} down {% else %} up {% endif %}"> Description 
             {% if field_to_sort_on == 'description' and direction_to_sort_on == 'up' %}
                 <i class="fas fa-angle-up"></i>
             {% elif field_to_sort_on == 'description' and direction_to_sort_on == 'down' %}
                 <i class="fas fa-angle-down"></i>
             {% else %}
             {% endif %}
+            <td>authors</td>
+            <td>genres</td>
+            <td>ages</td>
+            <td>publishings</td>
             <td>value</td>
-            <td>created</td>
             <td>updated</td>
             <td>actions</td>
 
         </tr>
-        {% for author in object_list %}
+        {% for book in object_list %}
             <tr>
-                <td> {{ author.pk }} </td>
-                <td> <a href= "{% url 'author-detail' author.pk %}"> {{ author.name }} </a></td>
-                <td> {{ author.description }} </td>
-                <td> {{ author.Opinion.all|length }} </td>
-                <td> {{ author.created }} </td>
-                <td> {{ author.updated }} </td>
+                <td> {{ book.pk }} </td>
+                <td> <a href= "{% url 'book-detail' book.pk %}"> {{ book.book_name }} </a></td>
+                <td> {{ book.book_description }} </td>
+                <td> {{ book.authors.all|length }} </td>
+                <td> {{ book.genres.all|length }} </td>
+                <td> {{ book.ages.all|length }} </td>
+                <td> {{ book.publishings.all|length }} </td>
+                <td> {{ book.created }} </td>
+                <td> {{ book.updated }} </td>
                 <td> 
-                    <a href= "{% url 'author-delete' author.pk %}"> <i class="far fa-trash-alt"></i> </a>
-                    <a href= "{% url 'author-update' author.pk %}"> <i class="far fa-edit"></i> </a>  
+                    <a href= "{% url 'book-delete' book.pk %}"> <i class="far fa-trash-alt"></i> </a>
+                    <a href= "{% url 'book-update' book.pk %}"> <i class="far fa-edit"></i> </a>  
                 </td>
             </tr>
         {% endfor %}   
     </table>
-    <a href = "{% url 'author-create' %}" class = "btn btn-success"> Add author </a></button>
-     
+    <a href = "{% url 'book-create' %}" class = "btn btn-success"> Add book </a></button>
+    </div>
 {% endblock main_content %}
 
 

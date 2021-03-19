@@ -6,15 +6,20 @@
     <title>Document</title>
 </head>
 <body>
-    <h1> Author name {{ object.name }} </h1>
-    <a href= "{% url 'authors-list'  %}">Authors list</a></br>
-    {{ object.description|default : "There is no description" }} </br>
+    <h1> Book name {{ object.book_name }} </h1>
+    <a href= "{% url 'books-list'  %}">Books list</a></br>
+    {{ object.book_description|default : "There is no description" }} </br>
     <h2></h2>
     <ul>
-        {% for opinion in object.Opinions.all %}
-            <li> {{ opinion }} </li>
+        {% for author in object.authors.all %}
+            <li> {{ author }} </li>
         {% endfor %}
     </ul>
+    {{ object.author }} </br>
+    {{ object.genre_type }} </br>
+    {{ object.age }} </br>
+    {{ object.publishing }} </br>
+    {{ object.rating|default : "-" }} </br>
     {{ object.created }} </br>
     {{ object.updated }} </br>
 </body>

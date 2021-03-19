@@ -2,14 +2,14 @@
 {% load crispy_forms_tags %}
 
 {% block main_content %}  
-    <h1> Add Author </h1>
+    <h1> Add Book </h1>
     <form action = '' method='POST' enctype='multipart/form-data'>
         {% csrf_token %}
         {{ form|crispy }}
-        <button class = "btn btn-danger btn-block" > Add new author </button>
+        <button class = "btn btn-danger btn-block" > Add new book </button>
     </form>
 </br>
 </br>
-    <a href ='/authors/' class = "btn btn-danger btn-block" > Authors </a>
+    <a href ='/books/' class = "btn btn-danger btn-block" > Books </a>
 {% endblock main_content %}
  

@@ -6,13 +6,12 @@ Author update
 {% endblock title %}
 
 {% block main_content %}  
-    <h1> Add Author </h1>
+    <h1> Update </h1>
     <form action = '' method='POST'>
         {% csrf_token %}
         {{ form|crispy }}
+        <button> Update </button>
         
-        <button> Add </button>
-
-    <a href = '/authors/'> Authors </a>
+    <a href = '/books/'> Books </a>
 
 {% endblock main_content %}

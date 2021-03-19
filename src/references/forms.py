@@ -2,11 +2,11 @@ from django import forms
 from django.db.models import fields
 from . import models
 
-class AuthorForm (forms.ModelForm):
+class BookForm (forms.ModelForm):
     class Meta:
-        model = models.Author 
+        model = models.Book 
         # fields = ('__all__')
-        fields = ('name', 'pic', 'description' )
+        fields = ('book_name', 'pic', 'book_description' )
 
 class SearchForm(forms.Form):
     query = forms.CharField(label="")

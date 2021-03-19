@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+
 from django.conf.urls.static import static
 from django.conf import settings
-#from references.views import AuthorsList
+#from references.views import boojs_list
 
 from references import views as ref_views
 from accs import urls as accs_urls
@@ -26,18 +27,18 @@ from cart import views as cart_views
 
 
 urlpatterns = [
-    path('qwerty/', admin.site.urls), #http://127.0.0.1:8000/admin/
-    # path('', ref_views.AuthorsList.as_view(), name='author-list-homepage'),
-    # path('authors/', views.authors_list, name='authors-list'), 
-    path('authors/', ref_views.AuthorsList.as_view(), name='author-list'),
-    # path('authors/<int:pk>/', views.author_detail, name='author-detail'),
-    path('authors/<int:pk>/', ref_views.AuthorDetail.as_view(), name='author-detail'),
-    # path('author-delete/<int:pk>/', views.author_delete, name='author-delete'),
-    path('author-delete/<int:pk>/', ref_views.AuthorDelete.as_view(), name='author-delete'),
+    path('admin/', admin.site.urls), #http://127.0.0.1:8000/admin/
+    # path('', ref_views.BooksList.as_view(), name='author-list-homepage'),
+    # path('books/', views.books_list, name='books_list'), 
+    path('books/', ref_views.BooksList.as_view(), name='books-list'),
+    # path('books/<int:pk>/', views.book_detail, name='book-detail'),
+    path('books/<int:pk>/', ref_views.BookDetail.as_view(), name='book-detail'),
+    # path('book-delete/<int:pk>/', views.book_delete, name='book-delete'),
+    path('book-delete/<int:pk>/', ref_views.BookDelete.as_view(), name='book-delete'),
     # path('author-create/', views.author_create, name='author-create'),
-    path('author-create/', ref_views.AuthorCreate.as_view(), name='author-create'),
+    path('book-create/', ref_views.BookCreate.as_view(), name='book-create'),
     # path('author-update/<int:pk>/', views.author_update, name='author-update'), 
-    path('author-update/<int:pk>/', ref_views.AuthorUpdate.as_view(),name="author-update"),
+    path('book-update/<int:pk>/', ref_views.BookUpdate.as_view(),name="book-update"),
     path('accs/', include(accs_urls)), 
     path('cart/', include(cart_urls, namespace="cart")),
     path('cart/', cart_views.HomePage.as_view(), name = "home-page")
