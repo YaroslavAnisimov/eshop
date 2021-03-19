@@ -28,7 +28,7 @@ from cart import views as cart_views
 
 urlpatterns = [
     path('admin/', admin.site.urls), #http://127.0.0.1:8000/admin/
-    # path('', ref_views.BooksList.as_view(), name='author-list-homepage'),
+    # path('home', ref_views.HomeList.as_view(), name='home'),
     # path('books/', views.books_list, name='books_list'), 
     path('books/', ref_views.BooksList.as_view(), name='books-list'),
     # path('books/<int:pk>/', views.book_detail, name='book-detail'),

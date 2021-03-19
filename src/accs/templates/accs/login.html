@@ -3,6 +3,9 @@
 
 {% block main_content %}  
     <h1> Login to continue </h1>
+    {% if forms.errors %}
+    <p> Your username or password didn't match. Please try again, </p>
+    {% endif %}
     <form action = '' method='POST'>
         {% csrf_token %}
         {{ form|crispy }}

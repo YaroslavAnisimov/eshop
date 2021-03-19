@@ -73,12 +73,20 @@ from django.db import models
     # field options documentation
 
 
+#class Home(models.Model):
+    
+
+
 class Book(models.Model): 
     book_name = models.CharField(
         max_length=30,
         verbose_name="Book title",
         null=False,
         blank=False)
+
+    pic = models.ImageField(
+        verbose_name="Picture",
+        upload_to = "uploads/")
 
     book_description = models.TextField(
         verbose_name="Book description",
@@ -92,17 +100,19 @@ class Book(models.Model):
         blank=False)
 
     genre_type = models.CharField(  
-        verbose_name="Genre",
-        max_length=30)
+        max_length=30,
+        verbose_name="Genre")
         
 
     age = models.CharField(
         verbose_name="Age category",
+        max_length=30,
         null=True,
         blank=True)
 
     publishing = models.CharField(
         verbose_name="Publishing",
+        max_length=30,
         null=True,
         blank=True)
 
@@ -121,6 +131,11 @@ class Book(models.Model):
         verbose_name='Updated',
         auto_now=True)
 
+
+    # class BookPic(models.Model):
+    #     name = "Picture name)",
+    #     pic = models.ImageField,
+    #     book = models.ForeignKey(Book)
 
     def __str__(self): # OOP method
         return self.book_name

@@ -29,24 +29,24 @@ class GenreAdmin(admin.ModelAdmin):
         'book',
         'genre_type']
 
-class AgeAdmin(models.Model):
-    list_display = [
-        'pk',
-        'book',
-        'age_category']
+# class AgeAdmin(models.ModelAdmin):
+#     list_display = [
+#         'pk',
+#         'book',
+#         'age_category']
 
-class PublishingAdmin(models.Model):
-    list_display = [
-        'pk',
-        'book',
-        'publishing']
+# class PublishingAdmin(models.ModelAdmin):
+#     list_display = [
+#         'pk',
+#         'book',
+#         'publishing']
 
 
 admin.site.register(models.Book, BookAdmin)
 admin.site.register(models.Author, AuthorAdmin)
 admin.site.register(models.Genre, GenreAdmin)
-admin.site.register(models.Age, AgeAdmin)
-admin.site.register(models.Publishing, PublishingAdmin)
+# admin.site.register(models.Age, AgeAdmin)
+# admin.site.register(models.Publishing, PublishingAdmin)
 
 
 

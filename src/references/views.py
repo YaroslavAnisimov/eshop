@@ -66,6 +66,7 @@ class BookDelete (DeleteView):
    model =  Book
 
 
+
 class BookCreate (CreateView):
    model = Book
 #    fields = ('book_name', 'book_description')
@@ -75,7 +76,8 @@ class BookCreate (CreateView):
 class BookUpdate (UpdateView):
    model = Book
    success_url ='/books-list/'
-   fields = ('book_name', 'book_description')
+#  form_class = forms.BookUpdate (needs to add form in forms.py)
+   fields = ('book_name', 'authors', 'book_description')
 
 
 

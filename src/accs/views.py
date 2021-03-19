@@ -1,3 +1,9 @@
+
+#show your login form if request is GET
+#if request POST check user and login and redirect
+
+
+
 from django.shortcuts import render
 from django.urls import reverse 
 from django.http import HttpResponseRedirect
