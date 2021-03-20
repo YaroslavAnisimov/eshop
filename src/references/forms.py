@@ -14,6 +14,8 @@ class SearchForm(forms.Form):
     direction=forms.CharField(widget=forms.HiddenInput)
 
 
+
+
     
 
     # def clean(self):

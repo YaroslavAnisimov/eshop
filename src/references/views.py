@@ -13,7 +13,7 @@ from references.models import Book
 class BooksList (LoginRequiredMixin, ListView) :
    model = Book
    login_url = '/admin/login/'
-   paginate_by = 10 
+   paginate_by = 10  #elements per page
 
    def get_ordering(self):
       ordering_by = "pk"

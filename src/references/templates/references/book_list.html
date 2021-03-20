@@ -41,18 +41,18 @@
             {% else %}
             {% endif %}
             </a></td>
-            <td><a href="?field=name&direction={% if field_to_sort_on == 'book_name' and direction_to_sort_on == 'up' %} down {% else %} up {% endif %}"> Author name 
-            {% if field_to_sort_on == 'name' and direction_to_sort_on == 'up' %}
+            <td><a href="?field=book_name&direction={% if field_to_sort_on == 'book_name' and direction_to_sort_on == 'up' %} down {% else %} up {% endif %}"> Book name 
+            {% if field_to_sort_on == 'book_name' and direction_to_sort_on == 'up' %}
                 <i class="fas fa-angle-up"></i>
-            {% elif field_to_sort_on == 'name' and direction_to_sort_on == 'down' %}
+            {% elif field_to_sort_on == 'book_name' and direction_to_sort_on == 'down' %}
                 <i class="fas fa-angle-down"></i>
             {% else %}
             {% endif %}
             </a></td>
-            <td><a href="?field=description&direction={% if field_to_sort_on == 'book_description' and direction_to_sort_on == 'up' %} down {% else %} up {% endif %}"> Description 
-            {% if field_to_sort_on == 'description' and direction_to_sort_on == 'up' %}
+            <td><a href="?field=book_description&direction={% if field_to_sort_on == 'book_description' and direction_to_sort_on == 'up' %} down {% else %} up {% endif %}"> Description 
+            {% if field_to_sort_on == 'book_description' and direction_to_sort_on == 'up' %}
                 <i class="fas fa-angle-up"></i>
-            {% elif field_to_sort_on == 'description' and direction_to_sort_on == 'down' %}
+            {% elif field_to_sort_on == 'book_description' and direction_to_sort_on == 'down' %}
                 <i class="fas fa-angle-down"></i>
             {% else %}
             {% endif %}

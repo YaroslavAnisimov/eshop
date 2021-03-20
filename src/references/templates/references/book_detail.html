@@ -5,27 +5,27 @@
 {% endblock title %}
 
 {% block main_content %}  
-<div class="card" style="width: 18rem;">
-    <img src="{{ object.pic.url}}" class="card-img-top" alt="{{object.book_description}}">
-        <div class="card-body">
-            <h5 class="card-title">{{object.book_name}}</h5>
-            <p class="card-text">{{object.book_description}}
-                
-                <ul>
-                    {% for author in object.authors.all %}
-                        <li> {{ author }} </li>
-                    {% endfor %}
-                </ul>
-                
-                {{ object.genre_type }} </br>
-                {{ object.age }} </br>
-                {{ object.publishing }} </br>
-                {{ object.rating|default : "-" }} </br>
-                {{ object.created }} </br>
-                {{ object.updated }} </br>
-            </p>
-            <a href ='/books/' class = "btn btn-danger btn-block" > Books </a>
+    <div class="card" style="width: 18rem;">
+    <img src="{{ object.pic.url}} " class="card-img-top" alt=" {{ object.book_description}}">
+    <div class="card-body">
+      <h5 class="card-title">{{ object.book_name }}</h5>
+      <p class="card-text">{{ object.book_description}}</p>
+        <ul>
+            {% for author in object.authors.all %}
+                <li> {{ author }} </li> 
+            {% endfor %}
+        </ul>
+        {{ object.author }} </br>
+        {{ object.genre_type }} </br>
+        {{ object.age }} </br>
+        {{ object.publishing }} </br>
+        {{ object.rating|default : "-" }} </br>
+        {{ object.created }} </br>
+        {{ object.updated }} </br>
         </div>
-</div>
+    </div>
+
+    <a href ='/books/' class = "btn btn-danger btn-block" > Books </a>
+
 {% endblock main_content %}
  
