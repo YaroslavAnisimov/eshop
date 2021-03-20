@@ -8,9 +8,9 @@
 {% block main_content %}  
     <div class="alert alert-dark" role="alert"></div> 
 
-    <h1> BookEshop </h1>
+    <h1> Booshop </h1>
     {{ request.get_full_path }}
-    <form action="" method="get">
+    <form action="{{ request.get_full_path }}" method="get">
         {{ search_form|crispy }}
     </form> 
     <div class="pagination">

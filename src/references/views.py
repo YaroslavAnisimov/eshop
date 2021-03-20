@@ -22,18 +22,22 @@ class BooksList (LoginRequiredMixin, ListView) :
       if field_to_sort_on and direction_to_sort_on:
          direction = {'up': ""}
          ordering_by = f'{direction.get(direction_to_sort_on,"-")}{field_to_sort_on}'
-      return ordering_by 
+      return ordering_by
+      
       #    if direction_to_sort_on == 'up':
       #       direction = ""
       #    else:
       #       direction = "-" 
 
+   # def get_queryset(self):
+   #    return super().get_queryset()
+
    def get_queryset(self):
-      guery = self.request.GET.get('query')
-      print(query)
+      q = self.request.GET.get('q')
+      print(q)
       qs = super().get_queryset()
-      if query:
-         qs = qs.filter(Q(description_contains=query)|Q(name_contains=query) )
+      if q:
+         qs = qs.filter(Q(book_description__contains=q)|Q(book_name__contains=q) )
       return qs
 
    def get_context_data (self, **kwargs):
@@ -41,10 +45,10 @@ class BooksList (LoginRequiredMixin, ListView) :
       context ['page_title'] = "Books"
       field_to_sort_on = self.request.GET.get('field')
       direction_to_sort_on = self.request.GET.get ('direction')
-      query = self.request.GET.get('query')
+      q = self.request.GET.get('q')
       context ['search_form'] = forms.SearchForm(
          initial={
-            'query':query,
+            'q':q,
             'field':field_to_sort_on,
             'direction': direction_to_sort_on,
          })
