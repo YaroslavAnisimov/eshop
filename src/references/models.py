@@ -86,7 +86,9 @@ class Book(models.Model):
 
     pic = models.ImageField(
         verbose_name="Picture",
-        upload_to = "uploads/")
+        upload_to = "uploads/",
+        null=True,
+        blank=True)
 
     book_description = models.TextField(
         verbose_name="Book description",

@@ -9,7 +9,7 @@ class BookForm (forms.ModelForm):
         fields = ('book_name', 'pic', 'book_description' )
 
 class SearchForm(forms.Form):
-    query = forms.CharField(label="Search:")
+    q = forms.CharField(label="Search:") #query(?)
     field=forms.CharField(widget=forms.HiddenInput)
     direction=forms.CharField(widget=forms.HiddenInput)
 

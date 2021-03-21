@@ -27,6 +27,7 @@
                 <td> {{ book.created }} </td>
                 <td> {{ book.updated }} </td>
                 <td> 
+                    <a href= "{% url 'book-create' book.pk %}"> Create </a>
                     <a href= "{% url 'book-delete' book.pk %}"> Delete </a>
                     <a href= "{% url 'book-update' book.pk %}"> Update </a>  
                 </td>

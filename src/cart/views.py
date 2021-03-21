@@ -10,14 +10,14 @@ class HomePage(TemplateView):
 
     def get_context_data (self, **kwargs):
         context = super() .get_context_data(**kwargs)
-        context ["authors"] = ref_models.Author.objects.all().order_by ("-pk")[:5]   
+        context ["books"] = ref_models.Book.objects.all().order_by ("-pk")[:5]   
         return context
 
 class UpdateCart(DetailView):
     model = models.Cart
     def get_object(self, *args, **kwargs):
-        author_id = self.request.GET.get('author')
-        if not author_id:
+        book_id = self.request.GET.get('book')
+        if not book_id:
             #throw an error
             pass
         else:
@@ -33,18 +33,18 @@ class UpdateCart(DetailView):
             if cart_created:
                 self.request.session['current_cart_pk'] = current_cart.pk
                 self.request.session['current_cart_pk']
-            author = ref_models.Author.objects.get(pk=author_id)
-            author_in_cart, author_created = models.AuthorInCart.objects.get_or_create(
+            book = ref_models.Book.objects.get(pk=book_id)
+            book_in_cart, book_created = models.BookInCart.objects.get_or_create(
                 cart = current_cart,
-                author = author,
-                defaults = {'quantity': 1, 'price':book.price}
+                book = book,
+                defaults = {'quantity': 1, 'price': book.price}
             )
-            if not author_created:
-                author_in_cart.quantity += 1
-                author_in_cart.save()
+            if not book_created:
+                book_in_cart.quantity += 1
+                book_in_cart.save()
         return current_cart
 
-    #www.leningrad.ru/author/35/
+    #www.leningrad.ru/book/35/
 
 
 

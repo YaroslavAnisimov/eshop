@@ -16,15 +16,15 @@ class Cart(models.Model): #basket settings
 
 
 
-
-class AuthorInCart(models.Model): #link to the things what clients buying
+class BookInCart(models.Model): #link to the things what clients buying
     cart = models.ForeignKey(
         Cart,
         verbose_name="Cart",
+        related_name="books",
         on_delete=models.CASCADE)
-    author = models.ForeignKey(
-        "references.Author",
-        verbose_name="Author in cart",
+    book = models.ForeignKey(
+        "references.Book",
+        verbose_name="Book in cart",
         on_delete=models.PROTECT)
 
     quantity = models.IntegerField("Quantity", default=1)
@@ -34,7 +34,7 @@ class AuthorInCart(models.Model): #link to the things what clients buying
         decimal_places=2)
 
 def __str__(self):
-        return f"AuthorInCart ID {self.pk} {self.author.name} quantity {self.quantity} price {self.price}"
+        return f"BookInCart ID {self.pk} {self.book.book_name} quantity {self.quantity} price {self.price}"
 
  
     

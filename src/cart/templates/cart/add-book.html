@@ -2,8 +2,8 @@
 
     <h1> {{ request.session.current_cart_pk }} </h1>
     {{ object }} <br> <hr>
-    {% for author_in_cart in object.authors.all %}
-    {{ author_in_cart.author }} <br>
-    {{ author_in_cart.quantity }} <br>
+    {% for book_in_cart in object.books.all %}
+    {{ book_in_cart.book }} <br>
+    {{ book_in_cart.quantity }} <br>
     {% endfor %} 
 {% endblock main_content %}    

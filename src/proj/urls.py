@@ -18,7 +18,7 @@ from django.urls import path, include
 
 from django.conf.urls.static import static
 from django.conf import settings
-#from references.views import boojs_list
+#from references.views import books_list
 
 from references import views as ref_views
 from accs import urls as accs_urls
@@ -35,9 +35,9 @@ urlpatterns = [
     path('books/<int:pk>/', ref_views.BookDetail.as_view(), name='book-detail'),
     # path('book-delete/<int:pk>/', views.book_delete, name='book-delete'),
     path('book-delete/<int:pk>/', ref_views.BookDelete.as_view(), name='book-delete'),
-    # path('author-create/', views.author_create, name='author-create'),
+    # path('book-create/', views.book_create, name='book-create'),
     path('book-create/', ref_views.BookCreate.as_view(), name='book-create'),
-    # path('author-update/<int:pk>/', views.author_update, name='author-update'), 
+    # path('book-update/<int:pk>/', views.book_update, name='book-update'), 
     path('book-update/<int:pk>/', ref_views.BookUpdate.as_view(),name="book-update"),
     path('accs/', include(accs_urls)), 
     path('cart/', include(cart_urls, namespace="cart")),
@@ -48,7 +48,9 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings .MEDIA_ROOT)  
 
 
-    #path('authors/<int:pk>', views.author_details)
+
+
+    #path('books/<int:pk>', views.book_details)
     
     
 #1.URL http://127.0.0.1:8000/cities/3/ (pk)

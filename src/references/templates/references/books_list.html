@@ -1,14 +1,15 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load ref_tags %}
 {% block title %} 
 {{ page_title }}
-{% load crispy_forms_tags %}
 {% endblock title %}
 
 
 {% block main_content %}  
     <div class="alert alert-dark" role="alert"></div> 
 
-    <h1> Booshop </h1>
+    <h1> Book shop </h1>
     {{ request.get_full_path }}
     <form action="{{ request.get_full_path }}" method="get">
         {{ search_form|crispy }}
@@ -33,29 +34,15 @@
     {{ field_to_sort_on}} {{direction_to_sort_on}}
     <table class="table table-striped table-bordered">
         <tr>
-            <td><a href="?field=pk&direction={% if field_to_sort_on == 'ID' and direction_to_sort_on == 'up' %}down{% else %}up{% endif %}"> ID 
-            {% if field_to_sort_on == 'pk' and direction_to_sort_on == 'up' %}
-                <i class="fas fa-angle-up"></i>
-            {% elif field_to_sort_on == 'pk' and direction_to_sort_on == 'down' %}
-                <i class="fas fa-angle-down"></i>
-            {% else %}
-            {% endif %}
+            <td><a href="?field=pk&direction={% if field_to_sort_on == 'pk' and direction_to_sort_on == 'up' %}down{% else %}up{% endif %}"> ID 
+                {% arrow 'pk' field_to_sort_on direction_to_sort_on %}
             </a></td>
             <td><a href="?field=book_name&direction={% if field_to_sort_on == 'book_name' and direction_to_sort_on == 'up' %} down {% else %} up {% endif %}"> Book name 
-            {% if field_to_sort_on == 'book_name' and direction_to_sort_on == 'up' %}
-                <i class="fas fa-angle-up"></i>
-            {% elif field_to_sort_on == 'book_name' and direction_to_sort_on == 'down' %}
-                <i class="fas fa-angle-down"></i>
-            {% else %}
-            {% endif %}
+                {% arrow 'book_name' field_to_sort_on direction_to_sort_on %}
             </a></td>
             <td><a href="?field=book_description&direction={% if field_to_sort_on == 'book_description' and direction_to_sort_on == 'up' %} down {% else %} up {% endif %}"> Description 
-            {% if field_to_sort_on == 'book_description' and direction_to_sort_on == 'up' %}
-                <i class="fas fa-angle-up"></i>
-            {% elif field_to_sort_on == 'book_description' and direction_to_sort_on == 'down' %}
-                <i class="fas fa-angle-down"></i>
-            {% else %}
-            {% endif %}
+                {% arrow 'book_description' field_to_sort_on direction_to_sort_on %}
+            
             <td>authors</td>
             <td>genres</td>
             <td>ages</td>
