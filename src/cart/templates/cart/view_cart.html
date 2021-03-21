@@ -1,0 +1,118 @@
+{% extends "template_main.html" %}
+{% load static %}
+{% block title %}
+    Basket
+{% endblock title %}
+{% block page_header %}
+  Basket items
+{% endblock page_header %}
+{% block main_content %}
+
+<br>
+
+{% if request.session.books_in_cart %}
+  <form action="{% url 'cart:update-cart' %}">
+    <table class="table table-sm table-striped table-hover">
+      <thead class="table-primary text-center align-middle">
+        <th></th>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Price</th>
+        <th>Total price</th>
+        <th></th>
+      </thead>
+      <tbody>
+        {% for book in object.books_in_cart.all %}
+          <tr class="align-middle">
+            <td>
+              <img src="/media/{{ book.book_card.picture }}" class="shadow bg-body rounded-3" style="width: 30px;" alt="...">
+            </td>
+            <td>
+              {{ book.book_card.name }}
+            </td>
+            <td>
+              <input class="text-center" size="5" type="number" min="0" name="{{ book.pk }}" value="{{ book.qty }}">
+            </td>
+            <td class="text-center">
+              {{ book.price }} USD
+            </td>
+            <td class="text-center">
+              {{ book.get_total_price }} USD
+            </td>
+            <td class="text-center">
+              <a title="Remove" href="{% url 'cart:delete-from-cart' book.pk %}">
+                <i class="bi bi-trash text-danger"></i>
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr class="align-middle">
+          <td colspan="2"><b>Summary</b></td>
+          <td class="text-center"><b>{{ object.get_books_count }}</td>
+          <td></td>
+          <td class="text-center"><b>{{ object.get_total_price }} USD</b></td>
+          <td></td>
+          </tr>
+      </tfoot>
+    </table>
+    <br>
+    <button type="submit" name="btn" value="recalculate" class="btn btn-primary">Recalculate</button>
+    <button type="submit" name="btn" value="checkout" class="btn btn-success">Make order</button>
+  </form>
+{% else %}
+  <h1 class="text-danger"><b><i>Basket is empty</i></b></h1>
+{% endif %}
+
+
+
+{% comment %} <table class="table">
+  {% for object in object_list %}
+    <tr>
+      <td>
+        <div class="container">
+        <img src=
+          {% if not object.picture %}
+            "{% static 'mainapp/img/no_book_photo.png'%}"
+          {% else %}
+            "media/{{ object.picture }}"
+          {% endif %}
+        class="img-fluid" width="250px">
+        
+          <div class="img-stamp" style="position: absolute; top: 0px; left: 0px; background-color: transparent;">
+            <img src="{% static 'mainapp/img/new.png'%}" class="img-fluid" width="96">
+          </div>
+        </div>
+      </td>
+      <td>
+        <h6><b> {{ object.name }}</b></h6>
+        Authors:
+          {% for author in object.authors.all %}
+            {{ author.name }}
+            {% if author != object.authors.last %}, {% endif %}
+          {% endfor %}
+        
+        <br> Episode: {{ object.series }}
+        <br> Genre:
+          {% for genre in object.genres.all %}
+            {{ genre.name }}
+            {% if genre != object.genres.last %}, {% endif %}
+          {% endfor %}
+        <br>Year: {{ object.year }}
+        <br>Number of pages: {{ object.num_pages }}
+        <!-- <br>Формат: {{ object.book_format }} -->
+        <!-- <br>ISBN: {{ object.isbn }} -->
+        <!-- <br>Вес: {{ object.weight }} гр. -->
+        <br> Age category: {{ object.age_category }}
+        <br> Publisher: {{ object.publisher }}
+        <br> Availability: {{ object.qty }}
+      </td>
+      <td>
+        <h5>{{ object.cost }} USD</h5>
+      </td>
+    </tr>
+  {% endfor %}
+</table> {% endcomment %}
+
+{% endblock main_content %}
