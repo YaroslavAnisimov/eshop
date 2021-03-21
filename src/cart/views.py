@@ -12,13 +12,13 @@ from mainapp import models as main_models
 from cart import utils
 
 
-class HomePage(TemplateView):
-    template_name = 'cart\home-page.html'
+# class HomePage(TemplateView):
+#     template_name = 'cart\home-page.html'
 
-    def get_context_data (self, **kwargs):
-        context = super() .get_context_data(**kwargs)
-        context ["books"] = ref_models.Book.objects.all().order_by ("-pk")[:5]   
-        return context
+#     def get_context_data (self, **kwargs):
+#         context = super() .get_context_data(**kwargs)
+#         context ["books"] = ref_models.Book.objects.all().order_by ("-pk")[:5]   
+#         return context
 
 class AddToCartView(generic.RedirectView):
     def get_redirect_url(self, *args, **kwargs):
