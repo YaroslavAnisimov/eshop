@@ -32,10 +32,10 @@ class AgeCategoriesForm(forms.ModelForm):
         fields = ['name']
 
 
-class BookFormatsForm(forms.ModelForm):
-    class Meta:
-        model = models.BookFormats
-        fields = ['name']
+# class BookFormatsForm(forms.ModelForm):
+#     class Meta:
+#         model = models.BookFormats
+#         fields = ['name']
 
 
 
