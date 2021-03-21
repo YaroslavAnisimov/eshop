@@ -59,7 +59,7 @@ class RecalculateCart(RedirectView):
         current_cart_pk, cart_items = utils.harvest_data(self)
         if not current_cart_pk:
             return reverse ("cart:add_to_cart")
-        action = utils.update_items_in_cart(current_cart_pk, cart_items)
+        action = utils.update_items_in_cart(current_cart_pk, cart_items_from_form)
         # action = checkout or recalculate
         if action == "checkout":
             url = reverse ("cart:checkout")
