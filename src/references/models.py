@@ -145,7 +145,7 @@ class Book(models.Model):
 
 class Author(models.Model):
 
-    book = models.ForeignKey( # city in lesson 13
+    book = models.ForeignKey( # lesson 13
         'references.Book', # the link to another class - Book 
         verbose_name = 'Book',
         on_delete = models.PROTECT,

@@ -14,7 +14,15 @@ class Cart(models.Model): #basket settings
     def __str__(self):
         return f"cart ID {self.pk}"
 
+#threshold - doscounts - dinamic parameter
 
+    @property
+    def total_summ(self):
+        all_books = self.books.all()
+        total = 0
+        for book in all_books:
+            total += book.total_price
+        return total
 
 class BookInCart(models.Model): #link to the things what clients buying
     cart = models.ForeignKey(
@@ -36,5 +44,7 @@ class BookInCart(models.Model): #link to the things what clients buying
 def __str__(self):
         return f"BookInCart ID {self.pk} {self.book.book_name} quantity {self.quantity} price {self.price}"
 
- 
+@property
+def total_price(self):
+    return self.book.price * self.quantity
     

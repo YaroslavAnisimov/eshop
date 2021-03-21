@@ -1,7 +1,9 @@
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView, DetailView, RedirectView
+from django.urls import reverse
 # templateview - show template page
 from references import models as ref_models
 from . import models
+from . import utils 
 
 
 
@@ -18,10 +20,13 @@ class UpdateCart(DetailView):
     def get_object(self, *args, **kwargs):
         book_id = self.request.GET.get('book')
         if not book_id:
-            #throw an error
-            pass
+            current_cart_pk = self.request.session.get('current_cart_pk')
+            if current_cart_pk:
+                current_cart = models.Cart.objects.filter(pk = current_cart_pk).first()
+                return current_cart or []
+            return []
         else:
-            current_cart_pk = self.request.session.get(current_cart_pk)
+            current_cart_pk = self.request.session.get('current_cart_pk')
             current_customer = self.request.user 
             if current_customer.is_anonymous:
                 current_customer=None
@@ -46,5 +51,20 @@ class UpdateCart(DetailView):
 
     #www.leningrad.ru/book/35/
 
+class RecalculateCart(RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        return_urls = {
+            'checkout': reverse("cart:checkout")
+        }
+        current_cart_pk, cart_items = utils.harvest_data(self)
+        if not current_cart_pk:
+            return reverse ("cart:add_to_cart")
+        action = utils.update_items_in_cart(current_cart_pk, cart_items)
+        # action = checkout or recalculate
+        if action == "checkout":
+            url = reverse ("cart:checkout")
+        else:
+            reverse("cart:add_to_cart")
+        return url
 
 

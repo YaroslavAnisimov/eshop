@@ -2,8 +2,33 @@
 
     <h1> {{ request.session.current_cart_pk }} </h1>
     {{ object }} <br> <hr>
-    {% for book_in_cart in object.books.all %}
-    {{ book_in_cart.book }} <br>
-    {{ book_in_cart.quantity }} <br>
-    {% endfor %} 
+    <h1> Books in the Cart </h1>
+    <form action="{% url 'cart:recalculate-cart' %}" method="POST">
+
+    <table class="table" >
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Price per unit</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        {% for book_in_cart in object.books.all %}
+            <tr>
+                <td>{{ book_in_cart.name }}</td>
+                <td></td>
+                <td><input type="number" min=0 name="book_in_cart_{{book_in_cart.pk}}" value="{{ book_in_cart.quantity}}"> </td>
+                <td>{{ book_in_cart.total_price }}</td>
+            </tr>
+        {% endfor %} 
+            <tr>
+                <td colspan ="3"><b> Total </b></td>
+                <td> <b>  {{ object.total_summ }} </b></td>
+            </tr>
+    </table>
+    <button type="submit" name="btn" class ="btn btn-success" value ="recalculate">Recalculate</button>
+    <button type="submit" name="btn" class ="btn btn-danger" value="checkout">Checkout</button>
+</form>
+
 {% endblock main_content %}    
