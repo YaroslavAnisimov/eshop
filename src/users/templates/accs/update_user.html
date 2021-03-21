@@ -1,0 +1,27 @@
+{% extends "template_main.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    User data editing
+{% endblock title %}
+
+{% block page_header %}
+ {{ user.username }} 
+{% endblock page_header %}
+
+{% block main_content %}
+
+<form method="POST" action="">
+
+    {% csrf_token %}
+    {{ form|crispy }}
+    {{ form_ext|crispy }}
+
+    <br>
+
+    <button type="submit" class="btn btn-success" > Save </button>
+    <button onclick="history.back()" class="btn btn-secondary" > Back </button>
+</form>
+
+{% endblock main_content %}

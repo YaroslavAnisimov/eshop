@@ -1,0 +1,21 @@
+{% extends "template_main.html" %}
+
+{% block title %}
+    Removing an item from the cart
+{% endblock title %}
+
+{% block page_header %}
+    Are you sure you want to delete this item {{ object.pk }} <b><i>({{ object}})</i></b>?
+{% endblock page_header %}
+
+{% block main_content %}
+    
+    <br>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger" style="width: 200px;">Delete</button>
+        <a onclick="history.back()" class="btn btn-secondary" style="width: 200px;">Back</a>
+    </form>
+    
+{% endblock main_content %}

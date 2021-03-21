@@ -1,0 +1,22 @@
+{% extends "template_main.html" %}
+{% load crispy_forms_tags %}
+
+{% block main_content %}  
+    <h1> Login to continue </h1>
+    {% if forms.errors %}
+    <p> Your username or password didn't match. Please try again, </p>
+    {% endif %}
+    <form action = '' method='POST'>
+
+        {% csrf_token %}
+        {{ form|crispy }}
+
+
+        <button type="submit" class="btn btn-success">Login</button>
+        <button onclick="history.back()" class="btn btn-secondary">Back</button>
+        <input type="hidden" name="next" value="{{ next }}">    
+
+        <!-- <button class = "btn btn-danger btn-block" > Login </button>
+        <input type="hidden" name="next" value="{{next}}">  -->
+    </form>
+{% endblock main_content %}

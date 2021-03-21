@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'references',
-    'accs',
+    'mainapp',
+    'users',
+    'storemanager',
+    'storeadmin',
     'cart',
     'orders'
 ]
@@ -61,7 +64,7 @@ ROOT_URLCONF = 'proj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,6 +129,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_ROOT = '/home/YaroslavAnisimov/eshop/static'
+
+
+# STATIC_URL = '/static/'
+# MEDIA_URL = '/media/'
+# STATIC_ROOT = os.path.join(BASE_DIR.parent, "static")
+# MEDIA_ROOT = os.path.join(BASE_DIR.parent, "media")
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
