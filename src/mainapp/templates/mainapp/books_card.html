@@ -108,7 +108,8 @@
              {% if object.num_pages %}{{ object.num_pages }}{% endif %}
           </td>
         </tr>
-<!-- 
+        
+{% comment %} <!-- 
         <tr>
           <td>
             <b>Формат:</b>
@@ -134,7 +135,7 @@
           <td>
              {% if object.weight %}{{ object.weight }}{% endif %}
           </td>
-        </tr> -->
+        </tr> --> {% endcomment %}
 
         <tr>
           <td>
@@ -158,10 +159,11 @@
 {% endfor %}
 </div>
 
+{% endblock main_content %}
 
 
 
-{% comment %} <table class="table">
+{% comment %} {% comment %} <table class="table">
   {% for object in object_list %}
     <tr>
       <td>
@@ -208,6 +210,4 @@
       </td>
     </tr>
   {% endfor %}
-</table> {% endcomment %}
-
-{% endblock main_content %}
+</table> {% endcomment %} {% endcomment %}

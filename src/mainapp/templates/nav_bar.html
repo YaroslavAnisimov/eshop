@@ -1,77 +1,74 @@
-</head>
-<body>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-<a class="navbar-brand" href="#">{% company_name %}</a><a class="navbar-brand" href="{% url 'homepage' %}"></a>
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+ 
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'homepage' %}"><i class="bi bi-house-door-fill"></i> homepage</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-<ul class="navbar-nav mr-auto">
-  <li class="nav-item active">
-    <a class="nav-link active" href="{% url 'homepage' %}"><i class="bi bi-bag-fill"></i> Home</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link active" href="{% url 'books-catalog' %}"><i class="bi bi-bag-fill"></i> Каталог</a>
-  </li>
-  {% if perms.references.view_authors %}
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-book-fill"></i> Справочники</a>
-    <ul class="dropdown-menu" aria-labelledby="dropdown01">
-      <li><a class="dropdown-item" href="{% url 'references:authors-list' %}">Authors</a></li>
-      <li><a class="dropdown-item" href="{% url 'references:genres-list' %}">Genres</a></li>
-      <li><a class="dropdown-item" href="{% url 'references:series-list' %}">Episodes</a></li>
-      <li><a class="dropdown-item" href="{% url 'references:publishers-list' %}">Publishers</a></li>
-      <li><a class="dropdown-item" href="{% url 'references:age_categories-list' %}">Age categories</a></li>
-      <!-- <li><a class="dropdown-item" href="{% url 'references:book_formats-list' %}">Book format</a></li> -->
-    </ul>
-  </li>
-  {% endif %}
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle active text-info" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">
-      <i class="bi bi-person-circle"></i> 
-      <b>
-        {% if not user.is_authenticated %}
-          
-        {% else %}
-          {% if user.first_name %}
-            {{ user.first_name }}
-          {% else %}
-            {{ user.username }}
-          {% endif %}
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'books-catalog' %}"><i class="bi bi-bag-fill"></i> Catalog</a>
+        </li>
+        {% if perms.references.view_authors %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-book-fill"></i> References</a>
+            <ul class="dropdown-menu" aria-labelledby="dropdown01">
+              <li><a class="dropdown-item" href="{% url 'references:authors-list' %}">Authors</a></li>
+              <li><a class="dropdown-item" href="{% url 'references:genres-list' %}">Genres</a></li>
+              <li><a class="dropdown-item" href="{% url 'references:series-list' %}">Episodes</a></li>
+              <li><a class="dropdown-item" href="{% url 'references:publishers-list' %}">Publishers</a></li>
+              <li><a class="dropdown-item" href="{% url 'references:age_categories-list' %}">Age categories</a></li>
+              {% comment %} <!-- <li><a class="dropdown-item" href="{% url 'references:book_formats-list' %}">Форматы книг</a></li> --> {% endcomment %}
+            </ul>
+          </li>
         {% endif %}
-      </b>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="dropdown01">
-      {% if not user.is_authenticated %}
-        <li>
-          <a class="dropdown-item" href="{% url 'users:login' %}?next={{ request.path }}"><i class="bi bi-box-arrow-in-right"></i> Login </a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active text-info" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle"></i> 
+            <b>
+              {% if not user.is_authenticated %}
+                
+              {% else %}
+                {% if user.first_name %}
+                  {{ user.first_name }}
+                {% else %}
+                  {{ user.username }}
+                {% endif %}
+              {% endif %}
+            </b>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdown01">
+            {% if not user.is_authenticated %}
+              <li>
+                <a class="dropdown-item" href="{% url 'users:login' %}?next={{ request.path }}"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'users:create-user' %}"><i class="bi bi-person-plus-fill"></i> Registration</a>  
+              </li>
+            {% else %}
+              <li>
+                <a class="dropdown-item" href="{% url 'users:update-user' %}"><i class="bi bi-info-circle"></i> Profile</a>
+              </li>
+              </li>
+                <a class="dropdown-item" href="#"><i class="bi bi-bag"></i> Orders</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'users:logout' %}"><i class="bi bi-box-arrow-left"></i> Logout</a>
+              </li>
+            {% endif %}
+          </ul>
         </li>
-        <li>
-          <a class="dropdown-item" href="{% url 'users:create-user' %}"><i class="bi bi-person-plus-fill"></i> Registration </a>  
-        </li>
-      {% else %}
-        <li>
-          <a class="dropdown-item" href="{% url 'users:update-user' %}"><i class="bi bi-info-circle"></i> Profile</a>
-        </li>
-        </li>
-          <a class="dropdown-item" href="#"><i class="bi bi-bag"></i> Orders </a>
-        </li>
-        <li>
-          <a class="dropdown-item" href="{% url 'users:logout' %}"><i class="bi bi-box-arrow-left"></i> Log-out</a>
-        </li>
-      {% endif %}
-    </ul>
-  </li>
-</ul>
-</div>
-<a href="{% url 'cart:view-cart' %}" class="btn btn-success">
-  <i class="bi bi-cart4"></i>
-    {% if request.session.books_in_cart %}
-      <span class="badge bg-light text-dark">
-          {{ request.session.books_in_cart }}
-      </span>
-    {% endif %}
-</a>
-</div>
+      </ul>
+    </div>
+      <a href="{% url 'cart:view-cart' %}" class="btn btn-success">
+        <i class="bi bi-cart4"></i>
+          {% if request.session.books_in_cart %}
+            <span class="badge bg-light text-dark">
+                {{ request.session.books_in_cart }}
+            </span>
+          {% endif %}
+      </a>
+  </div>
 </nav>
