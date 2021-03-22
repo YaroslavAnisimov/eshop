@@ -50,10 +50,10 @@ urlpatterns = [
     # path('book-update/<int:pk>/', views.book_update, name='book-update'), 
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# if settings.DEBUG:
-#     urlpatterns += static(settings.MEDIA_URL, document_root=settings .MEDIA_ROOT)  
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings .MEDIA_ROOT)  
 
     #path('books/<int:pk>', views.book_details)
     

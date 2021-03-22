@@ -114,7 +114,7 @@ class BooksInCart(models.Model): #link to the things what clients buying
         verbose_name='Date of changing',
         auto_now=True
     )
-
+    
     @property
     def get_total_price(self):
         return self.qty * self.price

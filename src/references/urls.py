@@ -30,6 +30,6 @@ urlpatterns = [
     path('genres-create/', views.GenresCreate.as_view(), name='genres-create'),
     path('series-create/', views.SeriesCreate.as_view(), name='series-create'),
     path('publishers-create/', views.PublishersCreate.as_view(), name='publishers-create'),
-    path('age_categories-create/', views.AgeCategoriesCreate.as_view(), name='age_categories-create'),
+    path('age_categories-create/', views.AgeCategoriesCreate.as_view(), name='age_categories-create')
     # path('book_formats-create/', views.BookFormatsCreate.as_view(), name='book_formats-create')
 ]

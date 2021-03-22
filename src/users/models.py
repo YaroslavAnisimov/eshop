@@ -56,13 +56,13 @@ class ExtUserData(models.Model):
     def __str__(self):
         return f'{self.phone}, {self.address1}, {self.post_index},  {self.city}, {self.country}'
 
-def init_base_data():
-    # if groups.objects.get(name='Customers') not None:
-    obj = auth_models.Group.objects.get_or_create(name='Customers')
-    if not obj:
-        obj.save()
-    # if groups.objects.get(name='Managers') not None:
-    obj = auth_models.Group.objects.get_or_create(name='Managers')
-    if not obj:
-        obj.save()
-init_base_data()
+# def init_base_data():
+#     # if groups.objects.get(name='Customers') not None:
+#     obj = auth_models.Group.objects.get_or_create(name='Customers')
+#     if not obj:
+#         obj.save()
+#     # if groups.objects.get(name='Managers') not None:
+#     obj = auth_models.Group.objects.get_or_create(name='Managers')
+#     if not obj:
+#         obj.save()
+# init_base_data()

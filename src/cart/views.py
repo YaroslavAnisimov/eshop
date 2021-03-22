@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.views import generic
-# from django.views.generic import TemplateView, DetailView, RedirectView
 from django.urls import reverse, reverse_lazy
-# templateview - show template page
 from django.contrib.auth import models as auth_models
+# from django.views.generic import TemplateView, DetailView, RedirectView
+# templateview - show template page
 # from references import models as ref_models
 # from . import models
 # from . import utils 
