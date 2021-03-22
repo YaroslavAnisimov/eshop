@@ -1,5 +1,7 @@
 from django.db import models
 from django.db.models.fields.related import ForeignKey, ManyToManyField
+from django.contrib.auth import models as auth_models
+
 
 
 # Create your models here.
