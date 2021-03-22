@@ -1,0 +1,67 @@
+{% extends "template_main.html" %}
+
+{% block title %}
+    {{ block.super }}
+{% endblock title %}
+
+{% block page_header %}
+    {{ block.super }}
+{% endblock page_header %}
+
+{% block main_content %}
+
+<br>
+
+    {% if page_obj.paginator.num_pages > 1 %}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1">&laquo;</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&lsaquo;</a>
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+                    </li>
+                {% endif %}
+                    <li class="page-item"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">&rsaquo;</a>
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+                {% endif %}
+            </ul>
+        </nav>
+    {% else %}
+        <br>
+    {% endif %}
+
+
+    <table class="table table-sm table-striped table-hover">
+
+        <thead class="table-primary">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Action</th>
+        </thead>
+        
+        {% for object in page_obj %}
+            <tr>
+                <td>{{ object.pk }}</td>
+                <td>{{ object.name }}</td>
+                <td>
+                    {% block dict_actions %}
+                        {% comment %} <a title="Edit" href="{% url 'references:authors-update' object.pk %}"><i class="bi bi-pencil-square"></i></a>
+                        <a title="Delete" href="{% url 'references:authors-delete' object.pk %}"><i class="bi bi-trash"></i></a> {% endcomment %}
+                    {% endblock dict_actions %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    
+    <br>
+
+    {% block dict_create %}     
+    {% endblock dict_create %}
+
+{% endblock main_content %}

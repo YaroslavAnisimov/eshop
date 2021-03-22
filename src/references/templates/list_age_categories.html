@@ -1,0 +1,18 @@
+{% extends "references/list_template.html" %}
+
+{% block title %}
+    Age categories
+{% endblock title %}
+
+{% block page_header %}
+    Age categories 
+{% endblock page_header %}
+
+{% block dict_actions %}
+    <a title="Edit" href="{% url 'references:age_categories-update' object.pk %}"><i class="bi bi-pencil-square"></i></a>
+    <a title="Delete" href="{% url 'references:age_categories-delete' object.pk %}"><i class="bi bi-trash"></i></a>
+{% endblock dict_actions %}
+
+{% block dict_create %}
+    <a href="{% url 'references:age_categories-create' %}" class="btn btn-primary" >Add</a><br><br>
+{% endblock dict_create %}
