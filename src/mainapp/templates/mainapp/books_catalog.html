@@ -216,7 +216,8 @@
         <div class="container">
         <img src=
           {% if not object.picture %}
-            "{% static 'mainapp/img/no_book_photo.png'%}"
+            <!-- "{% static 'mainapp/img/no_book_photo.png'%}" -->
+            No picture
           {% else %}
             "media/{{ object.picture }}"
           {% endif %}
@@ -228,30 +229,30 @@
         </div>
       </td>
       <td>
-        <h6><b>Название: {{ object.name }}</b></h6>
-        Авторы: 
+        <h6><b>Name: {{ object.name }}</b></h6>
+        Authors:
           {% for author in object.authors.all %}
             {{ author.name }}
             {% if author != object.authors.last %}, {% endif %}
           {% endfor %}
         
-        <br>Серия: {{ object.series }}
-        <br>Жанр:
+        <br>Episode: {{ object.series }}
+        <br>Genre:
           {% for genre in object.genres.all %}
             {{ genre.name }}
             {% if genre != object.genres.last %}, {% endif %}
           {% endfor %}
-        <br>Год издания: {{ object.year }}
-        <br>Количество страниц: {{ object.num_pages }}
-        <br>Формат: {{ object.book_format }}
+        <br>Year: {{ object.year }}
+        <br>Number of pages: {{ object.num_pages }}
+        <!-- <br>Формат: {{ object.book_format }}
         <br>ISBN: {{ object.isbn }}
-        <br>Вес: {{ object.weight }} гр.
-        <br>Возрастная категория: {{ object.age_category }}
-        <br>Издательство: {{ object.publisher }}
-        <br>Наличие: {{ object.qty }} шт.
+        <br>Вес: {{ object.weight }} гр. -->
+        <br>Age category: {{ object.age_category }}
+        <br>Publisher: {{ object.publisher }}
+        <br>Availability: {{ object.qty }} 
       </td>
       <td>
-        <h5>{{ object.cost }} BYN</h5>
+        <h5>{{ object.cost }}USD </h5>
       </td>
     </tr>
   {% endfor %}

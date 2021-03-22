@@ -52,12 +52,12 @@ class BookCard(models.Model):
         default=0
     )
 
-    book_format = ForeignKey(
-        'references.BookFormats',
-        on_delete = models.PROTECT,
-        blank=True,
-        null=True
-    )
+    # book_format = ForeignKey(
+    #     'references.BookFormats',
+    #     on_delete = models.PROTECT,
+    #     blank=True,
+    #     null=True
+    # )
 
     # isbn = models.CharField(
     #     verbose_name='ISBN',
